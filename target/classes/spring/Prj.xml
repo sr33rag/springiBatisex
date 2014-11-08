@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.iBATIS.com/dtd/sql-map-2.dtd">
+<sqlMap>
+  <typeAlias type="net.codesree.ibatisEx.model.Prj" alias="Prj"/>
+  <resultMap class="Prj" id="result">
+    <result property="iid" column="iid"/>
+    <result property="cname" column="cname"/>
+    <result property="cdesc" column="cdesc"/>
+  </resultMap>
+  <select id="selectAllPrjs" resultMap="result">
+    SELECT iid,cname,cdesc FROM tblPrj
+  </select>
+  <select id="selectPrjById" resultMap="result">
+    SELECT iid,cname,cdesc FROM tblPrj WHERE iid=#value#
+  </select>
+  <insert id="insertPrj" parameterClass="Prj">
+    INSERT INTO tblPrj(iid,cname,cdesc) VALUES (#iid#,#cname#,#cdesc#)
+  </insert>
+  <delete id="deletePrj" parameterClass="string">
+    DELETE FROM tblPrj WHERE iid=#iid#
+  </delete>
+  <update id="updatePrj" parameterClass="Prj">
+    UPDATE tblPrj SET cname=#cname#,cdesc=#cdesc# WHERE iid=#iid#
+  </update>
+</sqlMap>
